@@ -10,9 +10,15 @@ export default function Navbar() {
   };
 
   return (
-    <div className="navbar">
-      <h3>TaskFlow</h3>
-      <button className="logout-btn" onClick={logout}>Logout</button>
+    <div className="topbar">
+      <div className="brand" onClick={() => navigate("/dashboard")} role="button" tabIndex={0}>
+        <div className="brand-badge" />
+        <div>TaskFlow</div>
+      </div>
+
+      <button className="btn btn-ghost" onClick={logout}>
+        Logout
+      </button>
     </div>
   );
 }
