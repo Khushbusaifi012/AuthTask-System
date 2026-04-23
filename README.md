@@ -1,25 +1,14 @@
-## TaskFlow (MERN) – API + Frontend
+## TaskFlow
 
-TaskFlow is a simple task manager with:
-- **Backend**: Node.js + Express + MongoDB (JWT auth)
-- **Frontend**: React (Vite) + Axios
+TaskFlow is a simple **task manager**.
 
-## Features
-- **Auth**: Register / Login (JWT token)
-- **Tasks**: Create, list, delete tasks (per-user)
+- **Backend**: Node.js + Express + MongoDB
+- **Frontend**: React (Vite)
 
-## Project structure
-- `backend/` – Express API + MongoDB models/routes
-- `backend/frontend/` – React (Vite) UI
+## How to run (local)
 
-## Prerequisites
-- Node.js (recommended: latest LTS)
-- MongoDB (local or Atlas)
-
-## Environment variables
-Create a file: `backend/.env`
-
-Example:
+### 1) Setup backend env
+Create `backend/.env` (you can copy `backend/.env.example`).
 
 ```env
 PORT=5000
@@ -27,8 +16,8 @@ MONGO_URI=mongodb://127.0.0.1:27017/taskflow
 JWT_SECRET=change_this_to_a_long_random_secret
 ```
 
-## Install & Run (Backend)
-From the repo root:
+### 2) Start backend
+From the project root:
 
 ```powershell
 Set-Location backend
@@ -36,10 +25,10 @@ npm install
 npm run dev
 ```
 
-Backend will run on `http://localhost:5000` (based on `PORT`).
+Backend runs on `http://localhost:5000`.
 
-## Install & Run (Frontend)
-Open a new terminal, from the repo root:
+### 3) Start frontend
+Open a new terminal, from the project root:
 
 ```powershell
 Set-Location backend/frontend
@@ -47,30 +36,19 @@ npm install
 npm run dev
 ```
 
-Frontend will run on the Vite dev URL (usually `http://localhost:5173`).
+Frontend runs on the Vite URL (usually `http://localhost:5173`).
 
-## API Endpoints
-Base URL: `http://localhost:5000/api/v1`
+## API (quick)
+Base: `http://localhost:5000/api/v1`
 
-### Auth
-- **POST** `/auth/register`  
-  Body: `{ "name": "...", "email": "...", "password": "..." }`
-- **POST** `/auth/login`  
-  Body: `{ "email": "...", "password": "..." }`  
-  Response: `{ "token": "..." }`
+- **POST** `/auth/register`
+- **POST** `/auth/login` → returns `{ token }`
+- **Tasks** (need header `Authorization: Bearer <token>`)
+  - **GET** `/tasks`
+  - **POST** `/tasks`
+  - **PUT** `/tasks/:id`
+  - **DELETE** `/tasks/:id`
 
-### Tasks (Protected)
-Add header:
-- `Authorization: Bearer <token>`
-
-Endpoints:
-- **GET** `/tasks` – list tasks for current user
-- **POST** `/tasks` – create task  
-  Body: `{ "title": "...", "description": "...", "status": "pending|completed" }`
-- **PUT** `/tasks/:id` – update task
-- **DELETE** `/tasks/:id` – delete task
-
-## Notes
-- Frontend API base URL is configured in `backend/frontend/src/api.js` as `http://localhost:5000/api/v1`.
-- If you change backend port, update `baseURL` accordingly.
+## Note
+Frontend API base URL is in `backend/frontend/src/api.js`.
 
