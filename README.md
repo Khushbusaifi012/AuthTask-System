@@ -7,16 +7,7 @@ TaskFlow is a simple **task manager**.
 
 ## How to run (local)
 
-### 1) Setup backend env
-Create `backend/.env` (you can copy `backend/.env.example`).
-
-```env
-PORT=5000
-MONGO_URI=mongodb://127.0.0.1:27017/taskflow
-JWT_SECRET=change_this_to_a_long_random_secret
-```
-
-### 2) Start backend
+### 1) Start backend
 From the project root:
 
 ```powershell
